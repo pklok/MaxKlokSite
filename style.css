@@ -364,6 +364,7 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center 25%; /* crop ~25% from bottom by shifting focus upward */
     filter: grayscale(100%);
     transition: var(--transition);
 }
