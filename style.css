@@ -226,12 +226,17 @@ body {
 
 .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: 1fr 1fr;
     gap: 2rem;
 }
 
 .portfolio-item-large {
     grid-column: span 2;
+}
+
+.portfolio-item {
+    display: flex;
+    flex-direction: column;
 }
 
 .portfolio-item {
