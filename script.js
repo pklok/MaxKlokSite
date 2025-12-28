@@ -103,27 +103,36 @@ window.addEventListener('scroll', () => {
 
 // Image Lightbox Modal - Wait for DOM to load
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOMContentLoaded event fired');
     const imageModal = document.getElementById('image-modal');
     const modalImage = document.querySelector('.modal-image');
     const modalClose = document.querySelector('.modal-close');
 
+    console.log('imageModal:', imageModal);
+    console.log('modalImage:', modalImage);
+    console.log('modalClose:', modalClose);
+
     if (imageModal && modalImage && modalClose) {
         // Add click listeners to all project images
         const projectImages = document.querySelectorAll('.project-images img');
+        console.log('Project images found:', projectImages.length);
         
-        projectImages.forEach(img => {
+        projectImages.forEach((img, index) => {
             img.style.cursor = 'pointer';
             img.addEventListener('click', function(e) {
+                console.log('Image clicked:', this.src);
                 e.stopPropagation();
                 modalImage.src = this.src;
                 modalImage.alt = this.alt;
                 imageModal.classList.add('active');
                 document.body.style.overflow = 'hidden';
+                console.log('Modal should be visible now');
             });
         });
 
         // Close modal when clicking close button
         modalClose.addEventListener('click', function() {
+            console.log('Close button clicked');
             imageModal.classList.remove('active');
             document.body.style.overflow = 'auto';
         });
@@ -131,6 +140,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Close modal when clicking outside the image
         imageModal.addEventListener('click', (e) => {
             if (e.target === imageModal) {
+                console.log('Outside image clicked, closing modal');
                 imageModal.classList.remove('active');
                 document.body.style.overflow = 'auto';
             }
@@ -139,10 +149,13 @@ document.addEventListener('DOMContentLoaded', function() {
         // Close modal with Escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && imageModal.classList.contains('active')) {
+                console.log('Escape key pressed, closing modal');
                 imageModal.classList.remove('active');
                 document.body.style.overflow = 'auto';
             }
         });
+    } else {
+        console.error('Modal elements not found');
     }
 });
 
