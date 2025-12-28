@@ -226,26 +226,24 @@ body {
 
 .portfolio-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
 }
 
 .portfolio-item-large {
-    grid-column: span 2;
+    grid-column: span 1;
 }
 
 .portfolio-item {
     display: flex;
     flex-direction: column;
-}
-
-.portfolio-item {
     overflow: hidden;
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     transition: var(--transition);
     cursor: pointer;
     background: var(--white);
+    height: 100%;
 }
 
 .portfolio-item:hover {
