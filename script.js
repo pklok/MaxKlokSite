@@ -100,3 +100,41 @@ window.addEventListener('scroll', () => {
         }
     });
 });
+
+// Image Lightbox Modal
+const imageModal = document.getElementById('image-modal');
+const modalImage = document.querySelector('.modal-image');
+const modalClose = document.querySelector('.modal-close');
+
+// Add click listeners to all project images
+document.querySelectorAll('.project-images img').forEach(img => {
+    img.addEventListener('click', function() {
+        modalImage.src = this.src;
+        modalImage.alt = this.alt;
+        imageModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+});
+
+// Close modal when clicking close button
+modalClose.addEventListener('click', () => {
+    imageModal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+});
+
+// Close modal when clicking outside the image
+imageModal.addEventListener('click', (e) => {
+    if (e.target === imageModal) {
+        imageModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && imageModal.classList.contains('active')) {
+        imageModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+});
+
