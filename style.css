@@ -702,6 +702,48 @@ body {
     z-index: 10;
 }
 
+/* Process Steps */
+.process-images {
+    grid-template-columns: repeat(2, 1fr) !important;
+}
+
+.process-images-bottom {
+    grid-template-columns: repeat(2, 1fr) !important;
+    margin-top: 0;
+    align-items: stretch;
+}
+
+.process-step {
+    text-align: center;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.process-step img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    flex: 1;
+}
+
+.process-step img:hover {
+    transform: scale(1.15);
+    z-index: 10;
+}
+
+.process-step figcaption {
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-color);
+}
+
 .features-list {
     list-style: none;
     margin: 2rem 0;
