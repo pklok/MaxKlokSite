@@ -516,10 +516,10 @@ body {
 
 .digital-skill {
     display: grid;
-    grid-template-columns: minmax(0, 280px) auto;
+    grid-template-columns: minmax(0, 240px) auto;
     align-items: baseline;
     justify-content: start;
-    column-gap: 1.5rem;
+    column-gap: 1.25rem;
     padding: 0.25rem 0;
 }
 
