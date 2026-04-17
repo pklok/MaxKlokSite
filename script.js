@@ -101,6 +101,65 @@ window.addEventListener('scroll', () => {
     });
 });
 
+// Image Carousel for Personal Projects
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.carousel-thumbs').forEach(gallery => {
+        const carouselId = gallery.dataset.carousel;
+        const carousel = document.getElementById(carouselId);
+        if (!carousel) return;
+
+        const mainImg = carousel.querySelector('.carousel-main');
+        const thumbs = gallery.querySelectorAll('.carousel-thumb');
+        const prevBtn = carousel.querySelector('.carousel-prev');
+        const nextBtn = carousel.querySelector('.carousel-next');
+        const dotsContainer = carousel.querySelector('.carousel-dots');
+        let currentIndex = 0;
+
+        // Build dots
+        thumbs.forEach((_, i) => {
+            const dot = document.createElement('button');
+            dot.classList.add('carousel-dot');
+            if (i === 0) dot.classList.add('active');
+            dot.setAttribute('aria-label', 'Go to image ' + (i + 1));
+            dot.addEventListener('click', () => goTo(i));
+            dotsContainer.appendChild(dot);
+        });
+        const dots = dotsContainer.querySelectorAll('.carousel-dot');
+
+        function goTo(index) {
+            currentIndex = index;
+            mainImg.classList.add('fading');
+            setTimeout(() => {
+                mainImg.src = thumbs[index].src;
+                mainImg.alt = thumbs[index].alt;
+                mainImg.classList.remove('fading');
+            }, 200);
+
+            thumbs.forEach(t => t.classList.remove('active'));
+            thumbs[index].classList.add('active');
+            dots.forEach(d => d.classList.remove('active'));
+            dots[index].classList.add('active');
+        }
+
+        thumbs.forEach((thumb, i) => {
+            thumb.addEventListener('click', (e) => {
+                e.stopPropagation();
+                goTo(i);
+            });
+        });
+
+        prevBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            goTo((currentIndex - 1 + thumbs.length) % thumbs.length);
+        });
+
+        nextBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            goTo((currentIndex + 1) % thumbs.length);
+        });
+    });
+});
+
 // Image Lightbox Modal - Wait for DOM to load
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOMContentLoaded event fired');
